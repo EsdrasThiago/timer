@@ -1,0 +1,106 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15%;
+}
+
+.display {
+  background-color: black;
+  font-size: 50px;
+  color: white;
+  padding: 10px 30px 10px 30px;
+  margin-bottom: 5px;
+  box-shadow:
+    3.7px 3.8px 3.9px rgba(0, 0, 0, 0.042),
+    9px 9px 9.4px rgba(0, 0, 0, 0.061),
+    16.9px 17px 17.7px rgba(0, 0, 0, 0.075),
+    30.2px 30.4px 31.5px rgba(0, 0, 0, 0.089),
+    56.4px 56.8px 58.9px rgba(0, 0, 0, 0.108),
+    135px 136px 141px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.imagem {
+  width: 300px;
+}
+
+button {
+  --color: #000000;
+  font-family: inherit;
+  display: inline-block;
+  width: 8em;
+  height: 2.6em;
+  line-height: 2.5em;
+  margin: 20px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--color);
+  transition: color .5s;
+  z-index: 1;
+  font-size: 17px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: var(--color);
+  box-shadow:
+    3.7px 3.8px 3.9px rgba(0, 0, 0, 0.042),
+    9px 9px 9.4px rgba(0, 0, 0, 0.061),
+    16.9px 17px 17.7px rgba(0, 0, 0, 0.075),
+    30.2px 30.4px 31.5px rgba(0, 0, 0, 0.089),
+    56.4px 56.8px 58.9px rgba(0, 0, 0, 0.108),
+    135px 136px 141px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+}
+
+button:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--color);
+  height: 150px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+button:hover {
+  color: #fff;
+}
+
+button:before {
+  top: 100%;
+  left: 100%;
+  transition: all .7s;
+}
+
+button:hover:before {
+  top: -30px;
+  left: -30px;
+}
+
+button:active:before {
+  background: #000000;
+  transition: background 0s;
+}
+
+.input {
+  border: none;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: #e8e8e8;
+  box-shadow: 20px 20px 60px #c5c5c5,
+     -20px -20px 60px #ffffff;
+  transition: 0.3s;
+ }
+ 
+ .input:focus {
+  outline-color: #e8e8e8;
+  background: #e8e8e8;
+  box-shadow: inset 20px 20px 60px #c5c5c5,
+     inset -20px -20px 60px #ffffff;
+  transition: 0.3s;
+ }
