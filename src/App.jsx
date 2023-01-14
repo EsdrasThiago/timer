@@ -110,6 +110,8 @@ function App() {
 
   return (
     <div className="App">
+      {stopped ? <title>10:00</title> 
+      : <title>{`${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`}</title>}
       {stopped ? <span className="display">10:00</span>
         : <div className="display">
           <span>{minutes.toString().padStart(2, "0")}</span>
