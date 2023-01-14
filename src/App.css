@@ -96,6 +96,11 @@ button:active:before {
      -20px -20px 60px #ffffff;
   transition: 0.3s;
  }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button{
+  display: none;
+} 
  
  .input:focus {
   outline-color: #e8e8e8;

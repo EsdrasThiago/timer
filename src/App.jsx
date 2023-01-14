@@ -13,10 +13,40 @@ function App() {
   const [selected, setSelected] = useState(false);
   const [image, setImage] = useState(MOB);
   const [change, setChange] = useState(false);
+  const [write, setWrite] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
   const ONE_SECOND = 1000;
+
+  const setMinutes = (event) => {
+    const minutesInput = event.target.value
+    setInputMinutes(minutesInput);
+  }
+
+  const sendMinutes = () => {
+    const numberMinutes = Number(inputMinutes)
+    const minutesInteger = Number.isInteger(numberMinutes);
+    const minutesValidator = numberMinutes > 0 && numberMinutes < 61
+    if (!minutesInteger) {
+      setSelected(false);
+      return setErrorMessage('Insira um numero inteiro');
+    };
+    if (!numberMinutes) {
+      setSelected(false);
+      return setErrorMessage('Insira um valor');
+    }
+    if (!minutesValidator) {
+      setSelected(false);
+      return setErrorMessage('Insira um valor de 1 a 60');
+    }
+    console.log(minutesInteger);
+    setStopped(false);
+    setSelected(true);
+    setErrorMessage('');
+    setTotalSeconds(numberMinutes * 60);
+  }
 
   const imageChangerButton = () => {
     setChange(!change)
@@ -74,11 +104,6 @@ function App() {
     }
   }, [totalSeconds, play])
 
-  const setMinutes = (event) => {
-    const minutes = event.target.value
-    setInputMinutes(minutes);
-  }
-
   useEffect(() => {
     if (image.length < 5) setImage(MOB);
   }, [image])
@@ -95,12 +120,22 @@ function App() {
       {!play &&
         <div className='minutes'>
           <h1>Escolha quanto tempo deseja</h1>
-          <button type='button' onClick={tenMinutes}>10 Minutos</button>
-          <button type='button' onClick={sevenMinutes}>7 Minutos</button>
-          <button type='button' onClick={fiveMinutes}>5 Minutos</button>
-          <input type="number" onChange={setMinutes} value={inputMinutes} className="input" />
+          {write
+            ? <div>
+              <button type='button' onClick={() => setWrite(!write)}>Selecionar</button>
+              <input type="number" onChange={setMinutes} value={inputMinutes} className="input" />
+              <button type='button' onClick={sendMinutes}>Enviar Valor</button>
+            </div>
+            : <div>
+              <button type='button' onClick={() => setWrite(!write)}>Escrever</button>
+              <button type='button' onClick={tenMinutes}>10 Minutos</button>
+              <button type='button' onClick={sevenMinutes}>7 Minutos</button>
+              <button type='button' onClick={fiveMinutes}>5 Minutos</button>
+            </div>
+          }
         </div>
       }
+      {errorMessage && <p>{errorMessage}</p>}
       <div className='buttons'>
         {!play
           ? (
