@@ -6,12 +6,13 @@ import './App.css'
 
 function App() {
 
-  const [totalSeconds, setTotalSeconds] = useState(10 * 60)
-  const [play, setPlay] = useState(false)
-  const [stopped, setStopped] = useState(false)
-  const [selected, setSelected] = useState(false)
-  const [image, setImage] = useState(MOB)
-  const [change, setChange] = useState(false)
+  const [totalSeconds, setTotalSeconds] = useState(10 * 60);
+  const [inputMinutes, setInputMinutes] = useState(0);
+  const [play, setPlay] = useState(false);
+  const [stopped, setStopped] = useState(false);
+  const [selected, setSelected] = useState(false);
+  const [image, setImage] = useState(MOB);
+  const [change, setChange] = useState(false);
 
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
@@ -21,7 +22,7 @@ function App() {
     setChange(!change)
   }
 
-  const imageChangerInput = ({target}) => {
+  const imageChangerInput = ({ target }) => {
     setImage(target.value)
   }
 
@@ -73,6 +74,11 @@ function App() {
     }
   }, [totalSeconds, play])
 
+  const setMinutes = (event) => {
+    const minutes = event.target.value
+    setInputMinutes(minutes);
+  }
+
   useEffect(() => {
     if (image.length < 5) setImage(MOB);
   }, [image])
@@ -92,6 +98,7 @@ function App() {
           <button type='button' onClick={tenMinutes}>10 Minutos</button>
           <button type='button' onClick={sevenMinutes}>7 Minutos</button>
           <button type='button' onClick={fiveMinutes}>5 Minutos</button>
+          <input type="number" onChange={setMinutes} value={inputMinutes} className="input" />
         </div>
       }
       <div className='buttons'>
@@ -131,7 +138,7 @@ function App() {
         ? <button type='button' onClick={imageChangerButton}>Mude a imagem</button>
         : <button type='button' onClick={imageChangerButton}>Voltar</button>
       }
-      {change && 
+      {change &&
         <input placeholder='Insira o link da imagem' className="input" onChange={imageChangerInput} />
       }
     </div>
