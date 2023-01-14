@@ -41,7 +41,6 @@ function App() {
       setSelected(false);
       return setErrorMessage('Insira um valor de 1 a 60');
     }
-    console.log(minutesInteger);
     setStopped(false);
     setSelected(true);
     setErrorMessage('');
@@ -124,7 +123,10 @@ function App() {
           <h1>Escolha quanto tempo deseja</h1>
           {write
             ? <div>
-              <button type='button' onClick={() => setWrite(!write)}>Selecionar</button>
+              <button type='button' onClick={() => {
+                setWrite(!write)
+                setErrorMessage('');
+                }}>Selecionar</button>
               <input type="number" onChange={setMinutes} value={inputMinutes} className="input" />
               <button type='button' onClick={sendMinutes}>Enviar Valor</button>
             </div>
