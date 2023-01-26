@@ -1,4 +1,5 @@
 const MOB = 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/054a91f2-3cd8-45d1-89f2-dd4828550aeb/dfkz7pd-573172f7-c5b7-4d98-ae71-57a8ea7295e0.png/v1/fit/w_300,h_765,strp/mob_render_by_aeiouact4_dfkz7pd-300w.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzY1IiwicGF0aCI6IlwvZlwvMDU0YTkxZjItM2NkOC00NWQxLTg5ZjItZGQ0ODI4NTUwYWViXC9kZmt6N3BkLTU3MzE3MmY3LWM1YjctNGQ5OC1hZTcxLTU3YThlYTcyOTVlMC5wbmciLCJ3aWR0aCI6Ijw9NjkyIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.mKtcCuP1uLkxXOsKG6O3ggHldqUHvOHnBQgcR5hU18Y'
+const CHAD = 'https://qph.cf2.quoracdn.net/main-qimg-a2d4e93c84252666b4fd0667050f6f33-pjlq'
 import { useEffect } from 'react';
 import { useState } from 'react'
 import './App.css'
@@ -49,6 +50,8 @@ function App() {
 
   const imageChangerButton = () => {
     setChange(!change)
+    if (!change) return setImage(CHAD);
+    setImage(MOB);
   }
 
   const imageChangerInput = ({ target }) => {
@@ -103,14 +106,14 @@ function App() {
     }
   }, [totalSeconds, play])
 
-  useEffect(() => {
-    if (image.length < 5) setImage(MOB);
-  }, [image])
+  // useEffect(() => {
+  //   if (image.length < 5) setImage(MOB);
+  // }, [image])
 
   return (
     <div className="App">
-      {stopped ? <title>10:00</title> 
-      : <title>{`${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`}</title>}
+      {stopped ? <title>10:00</title>
+        : <title>{`${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`}</title>}
       {stopped ? <span className="display">10:00</span>
         : <div className="display">
           <span>{minutes.toString().padStart(2, "0")}</span>
@@ -126,7 +129,7 @@ function App() {
               <button type='button' onClick={() => {
                 setWrite(!write)
                 setErrorMessage('');
-                }}>Selecionar</button>
+              }}>Selecionar</button>
               <input type="number" onChange={setMinutes} value={inputMinutes} className="input" />
               <button type='button' onClick={sendMinutes}>Enviar Valor</button>
             </div>
@@ -178,7 +181,8 @@ function App() {
         : <button type='button' onClick={imageChangerButton}>Voltar</button>
       }
       {change &&
-        <input placeholder='Insira o link da imagem' className="input" onChange={imageChangerInput} />
+        <p>Aqui não, amigo</p>
+        // <input placeholder='Insira o link da imagem' className="input" onChange={imageChangerInput} />
       }
     </div>
   )
